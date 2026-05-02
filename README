@@ -1,0 +1,29 @@
+How to launch:
+just use: docker-compose up -d
+U will launch this up on http://localhost:9999
+To use the converter u need to follow the link http://localhost:9999/upload
+Here u can see the interface of this app, and all of u need it's upload the file u need to convert and wait(approximately 1 min) to get upload ur converted xslx
+
+Structure of project:
+U have docker-compose.yml with settings of docker-compose
+Folder app which contains the whole application
+In folder app u have app.py which contains full logic to work with file,like backend of this app
+requirements.txt = libraries and versions needs to launch this app
+Dockerfile = standard dockerfile for this app
+Folder templates contains html page,like frontend
+
+How to edit this file:
+
+U need to go to app.py and if u have not standard nomenclature templates in docx file u need to change the rows
+
+in this code(if len(row) > x and column_4 = row[x]) The standard number is 3
+
+            if len(row) > 3:
+                column_4 = row[3]
+                sheet.cell(row=i, column=11, value=column_4)
+                if re.search(r'(постоянно|ДМН|ДЗН)', column_4, re.IGNORECASE):
+                    sheet.cell(row=i, column=9, value="Постоянное")
+                elif match := re.search(r'(\d+)\s*(год(?:а|ов)?|лет)', column_4, re.IGNORECASE):
+                    years = match.group(1)
+                    sheet.cell(row=i, column=10, value=years)
+                    sheet.cell(row=i, column=9, value="Временное")
